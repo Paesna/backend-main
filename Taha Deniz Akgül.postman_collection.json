@@ -1,0 +1,298 @@
+{
+  "info": {
+    "_postman_id": "1428d254-200e-4159-97e0-174effa5b60f",
+    "name": "Taha Deniz Akgül",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AddVenue",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "794d221c-772b-4dc1-9b3f-ad8f176ae5d0",
+            "exec": [
+              "// Dönen cevabı JSON olarak al\r",
+              "var jsonData = pm.response.json();\r",
+              "\r",
+              "// Cevabın içindeki _id değerini 'venueid' adıyla Environment'a kaydet\r",
+              "pm.environment.set(\"venueid\", jsonData._id);\r",
+              "\r",
+              "// Konsola bilgi ver\r",
+              "console.log(\"Yeni Venue ID kaydedildi: \" + jsonData._id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "4f0adc1a-082c-4912-84f5-d5f038d89316",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Otomasyon Test Mekanı\",\r\n  \"address\": \"Test Caddesi\",\r\n  \"foodanddrink\": \"Test Yemeği\",\r\n  \"lat\": 37.5,\r\n  \"long\": 30.5,\r\n  \"day1\": \"Pazartesi\",\r\n  \"open1\": \"08:00\",\r\n  \"close1\": \"22:00\",\r\n  \"isClosed1\": false,\r\n  \"day2\": \"Salı\",\r\n  \"open2\": \"08:00\",\r\n  \"close2\": \"22:00\",\r\n  \"isClosed2\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/venues",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetVenue",
+      "id": "55f49cd6-9e24-417f-a327-9aa8bced8114",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateVenue",
+      "id": "3112872e-d97f-4222-bda9-68d306d8cdaf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Otomasyon Test Mekanı (GÜNCELLENDİ)\",\r\n  \"address\": \"Yeni Adres\",\r\n  \"lat\": 37.5,\r\n  \"long\": 30.5,\r\n  \"day1\": \"Pazartesi\",\r\n  \"open1\": \"09:00\",\r\n  \"close1\": \"23:00\",\r\n  \"isClosed1\": false,\r\n  \"day2\": \"Salı\",\r\n  \"open2\": \"09:00\",\r\n  \"close2\": \"23:00\",\r\n  \"isClosed2\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddComment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ea4d0ccc-1b9c-4e2f-b664-389c59f648a8",
+            "exec": [
+              "var jsonData = pm.response.json();\r",
+              "\r",
+              "// Cevap içindeki _id'yi 'commentid' olarak kaydet\r",
+              "pm.environment.set(\"commentid\", jsonData._id);\r",
+              "\r",
+              "console.log(\"Yeni Comment ID kaydedildi: \" + jsonData._id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "bfd97491-e71c-41d4-a5d4-70851f85369a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"author\": \"Test Robotu\",\r\n    \"rating\": 5,\r\n    \"text\": \"Bu yorum otomatik değişken testi için atıldı.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}/comments",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}",
+            "comments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetComment",
+      "id": "1a8faa75-af8e-43ea-9af9-320d83cf9672",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}/comments/{{commentid}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}",
+            "comments",
+            "{{commentid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateComment",
+      "id": "05be4f80-8054-4995-80aa-1fb538f19b65",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"author\": \"Test Robotu\",\r\n    \"rating\": 1,\r\n    \"text\": \"Yorumu güncelledim.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}/comments/{{commentid}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}",
+            "comments",
+            "{{commentid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteComment",
+      "id": "87afe248-8c82-459b-aea0-a3461a8fd451",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}/comments/{{commentid}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}",
+            "comments",
+            "{{commentid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteVenue",
+      "id": "e7646b89-49ac-4697-89ce-e14a7f539c78",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/venues/{{venueid}}",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues",
+            "{{venueid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ListVenue",
+      "id": "f9c3e2f8-5314-4089-82d4-66f1ebdc520d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/venues?lat=37.5&long=30.5",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "venues"
+          ],
+          "query": [
+            {
+              "key": "lat",
+              "value": "37.5"
+            },
+            {
+              "key": "long",
+              "value": "30.5"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
