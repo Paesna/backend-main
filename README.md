@@ -1,6 +1,5 @@
 # Mekanbul API Projesi
 
-Bu proje, SDU Full Stack Bootcamp kapsamında geliştirilen mekan bulma uygulaması backend servisidir. RESTful API mimarisi kullanılarak geliştirilmiş, MongoDB veritabanı ile entegre edilmiştir.
 
 ## 🔗 Canlı Bağlantı (Vercel)
 Proje şu adreste canlı olarak çalışmaktadır (API Base URL):
